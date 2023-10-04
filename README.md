@@ -100,7 +100,7 @@ The Verxio Protocol solution leverages these cryptographic methods to create a s
 
 
 ### ☄️ What's next?
-- Currently, Verxio Protocol only supports native coin transfers(BNB). However, adding support for tokens and NFTs would greatly enhance its utility. We are considering implementing relayer nodes to mint and sell notes as tokens (or NFTs) in exchange for covering user fees on transfers.
+- Currently, Verxio Protocol only supports native coin transfers(MATIC). However, adding support for tokens and NFTs would greatly enhance its utility. We are considering implementing relayer nodes to mint and sell notes as tokens (or NFTs) in exchange for covering user fees on transfers.
 - This approach allows users to maintain their anonymity while using note tokens to request relayers to cover fees and pay for transactions. Competition between relayers could help keep transfer fees reasonable.
 - Making it live on the Polygon Mainnet 😉
 - Expanding Verxio Protocol by enabling cross-chain transactions. Additionally, gas optimization in the StealthAddress contract and its interaction with the receiving side can be improved.
