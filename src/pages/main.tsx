@@ -17,6 +17,7 @@ import SendReceive from '../svg/send-receive.svg';
 import Shield from '../svg/shield.svg';
 import { Link } from 'react-router-dom';
 import { registryAddress, explorer } from '../utils/constants';
+import TransactionPool from '../components/tsx-pools';
 
 import './main.css';
 
@@ -44,7 +45,7 @@ export function Main() {
           <Link to="/verxio">
             <button 
             className="hbutton hbutton-lnk header-item" 
-            style={{ marginLeft: '-120px' }}>
+            style={{ marginLeft: '-150px' }}>
             <span> 
             VERXIO AI
               <BiBot />  
@@ -116,10 +117,10 @@ export function Main() {
               >
                 <h2>
                   <FontAwesomeIcon icon={faArrowTurnDown} flip="horizontal" />
-                  &nbsp; Spend
+                  &nbsp; Data Pool
                 </h2>
                 <span className="super" style={{color: '#f99bcd'}}>
-                Gnosis Pay
+                Streamr
                 </span>
               </div>
             </div>
@@ -142,31 +143,13 @@ export function Main() {
               className="pane"
               style={{ display: activeTab === 'spend' ? 'block' : 'none' }}
             >
-              <p>Spend your crypto anywhere with Gnosis Pay powered Visa Debit Card!</p>
-              <button 
-              className="hbutton hbutton-lnk header-item" 
-              onClick={() => window.location.href = 'https://gnosispay.com/app/signup'}
-              >
-                <span> 
-              Get Started
-                </span>
-              </button>
+              < TransactionPool />
             </div>
 
           </div>
         </AddressProvider>
 
         <div className="footer">
-          {/* <a
-            href="https://youtu.be/zeQw4JHy00o"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <span>
-              Demo video &nbsp;
-              <FontAwesomeIcon icon={faYoutube} />
-            </span>
-          </a> */}
           <a
             href={`https://${explorerAddress}/address/${contractAddress}`}
             style={{ flexGrow: 1 }}

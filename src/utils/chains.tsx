@@ -1,9 +1,9 @@
 import { Chain } from 'wagmi';
 
-export const PolygonTestnet = {
+export const PolygonMumbai = {
   id: 80001,
-  name: 'Polygon Testnet',
-  network: 'Polygon Testnet',
+  name: 'Polygon Mumbai',
+  network: 'Polygon Mumbai',
   nativeCurrency: {
     decimals: 18,
     name: 'MATIC',

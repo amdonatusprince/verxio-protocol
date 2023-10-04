@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.1",
     "@coreui/react": "^4.5.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
@@ -23,6 +26,7 @@
     "buffer": "^6.0.3",
     "elliptic": "^6.5.4",
     "ethers": "^5.7.2",
+    "framer-motion": "^10.16.4",
     "openai": "^4.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

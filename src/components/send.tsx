@@ -33,8 +33,7 @@ export function Send() {
     watch: true,
     cacheTime: 3_500,
   });
-
-  console.log(balance)
+  
   const { chain } = useNetwork();
 
   const [xdcAddr, setxdcAddr] = useState<string>(

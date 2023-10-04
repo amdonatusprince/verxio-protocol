@@ -6,11 +6,12 @@ import { BrowserRouter } from 'react-router-dom'
 import PageRoutes from './pages/routes.jsx'
 import { polygon } from 'wagmi/chains'
 import '@rainbow-me/rainbowkit/styles.css';
+import { ChakraProvider } from '@chakra-ui/react'
 import {
   RainbowKitProvider,
   lightTheme
 } from '@rainbow-me/rainbowkit';
-import { PolygonTestnet, } from './utils/chains.js'
+import { PolygonMumbai } from './utils/chains.js'
 import { publicProvider } from 'wagmi/providers/public'
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import {
@@ -24,7 +25,7 @@ import {
 
 const projectId = "274de4271228fdd69013c56274f0e688";
 const { chains, publicClient } = configureChains(
-  [polygon, PolygonTestnet],
+  [polygon, PolygonMumbai],
   [
     publicProvider()
   ]
@@ -59,6 +60,7 @@ const wagmiConfig = createConfig({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <ChakraProvider>
     <BrowserRouter>
     <WagmiConfig config={wagmiConfig}>
     <RainbowKitProvider 
@@ -75,5 +77,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </WagmiConfig>
     
     </BrowserRouter>
+    </ChakraProvider>
   </React.StrictMode>,
 )
