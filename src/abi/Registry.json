@@ -1,22 +1,75 @@
 {
 	"VerxioPayABI": [
 		{
-			"inputs": [],
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "x",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "y",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "bytes1",
+					"name": "sharedsecret",
+					"type": "bytes1"
+				},
+				{
+					"internalType": "address payable",
+					"name": "receiver",
+					"type": "address"
+				}
+			],
+			"name": "publishAndSend",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "x",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "y",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "bytes1",
+					"name": "sharedsecret",
+					"type": "bytes1"
+				},
+				{
+					"internalType": "address",
+					"name": "token",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "receiver",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
+				}
+			],
+			"name": "publishAndSendToken",
+			"outputs": [],
 			"stateMutability": "nonpayable",
-			"type": "constructor"
+			"type": "function"
 		},
 		{
 			"inputs": [],
-			"name": "VERSION",
-			"outputs": [
-				{
-					"internalType": "uint8",
-					"name": "",
-					"type": "uint8"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
+			"stateMutability": "nonpayable",
+			"type": "constructor"
 		},
 		{
 			"inputs": [
@@ -42,7 +95,7 @@
 						},
 						{
 							"internalType": "bytes1",
-							"name": "ss",
+							"name": "sharedsecret",
 							"type": "bytes1"
 						},
 						{
@@ -51,78 +104,12 @@
 							"type": "address"
 						}
 					],
-					"internalType": "struct Registry.EphemeralKey[10]",
+					"internalType": "struct StealthAddressRegistry.EphemeralKey[10]",
 					"name": "",
 					"type": "tuple[10]"
 				}
 			],
 			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "bytes32",
-					"name": "x",
-					"type": "bytes32"
-				},
-				{
-					"internalType": "bytes32",
-					"name": "y",
-					"type": "bytes32"
-				},
-				{
-					"internalType": "bytes1",
-					"name": "ss",
-					"type": "bytes1"
-				},
-				{
-					"internalType": "address payable",
-					"name": "target",
-					"type": "address"
-				}
-			],
-			"name": "publishAndSend",
-			"outputs": [],
-			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "bytes32",
-					"name": "x",
-					"type": "bytes32"
-				},
-				{
-					"internalType": "bytes32",
-					"name": "y",
-					"type": "bytes32"
-				},
-				{
-					"internalType": "bytes1",
-					"name": "ss",
-					"type": "bytes1"
-				},
-				{
-					"internalType": "address",
-					"name": "token",
-					"type": "address"
-				},
-				{
-					"internalType": "address",
-					"name": "target",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "amount",
-					"type": "uint256"
-				}
-			],
-			"name": "publishAndSendToken",
-			"outputs": [],
-			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -133,6 +120,19 @@
 					"internalType": "uint256",
 					"name": "count",
 					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "VERSION",
+			"outputs": [
+				{
+					"internalType": "uint8",
+					"name": "",
+					"type": "uint8"
 				}
 			],
 			"stateMutability": "view",

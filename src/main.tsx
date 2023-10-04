@@ -4,13 +4,13 @@ import { WagmiConfig, createConfig, configureChains, } from 'wagmi'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import PageRoutes from './pages/routes.jsx'
-import { gnosis, gnosisChiado } from 'wagmi/chains'
+import { polygon } from 'wagmi/chains'
 import '@rainbow-me/rainbowkit/styles.css';
 import {
   RainbowKitProvider,
   lightTheme
 } from '@rainbow-me/rainbowkit';
-
+import { PolygonTestnet, } from './utils/chains.js'
 import { publicProvider } from 'wagmi/providers/public'
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import {
@@ -24,7 +24,7 @@ import {
 
 const projectId = "274de4271228fdd69013c56274f0e688";
 const { chains, publicClient } = configureChains(
-  [gnosis, gnosisChiado],
+  [polygon, PolygonTestnet],
   [
     publicProvider()
   ]
