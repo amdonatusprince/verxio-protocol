@@ -14,7 +14,7 @@ Verxio is heavily inspired by [Vitalik's recent article on stealth addresses](ht
 - It empowers users to maintain their privacy, fostering trust and security in the blockchain industry.
 
 ### 😎 Idea
-- So, picture this: you’re in the world of blockchain, where transparency is the name of the game. But what if you could be like a digital ninja and keep your financial moves hiddem? That’s where Verxio Protocol draws inspiration from cool privacy champs like Monero and Tornado Cash. They’re like those fancy gadgets spies use, but they can be a bit pricey and complicated. But wait, here’s the twist – we’re making privacy simple and accessible for everyone, just like your favorite comfort food.
+- So, picture this: you’re in the world of blockchain, where transparency is the name of the game. But what if you could be like a digital ninja and keep your financial moves hidden? That’s where Verxio Protocol draws inspiration from cool privacy champs like Monero and Tornado Cash. They’re like those fancy gadgets spies use, but they can be a bit pricey and complicated. But wait, here’s the twist – we’re making privacy simple and accessible for everyone, just like your favorite comfort food.
 
 - Speaking of twists, have you heard of Vitalik’s article about “Stealth Addresses”? It’s like finding the missing piece of the puzzle! Inspired by this ninja move, we’re crafting a tool that lets you go hidden while making transactions. And why Polygon, you ask? Well, it’s like the perfect partner in crime – fast and wallet-friendly transactions. And Verxio Protocol? It’s like your digital alter ego, keeping you anonymous while you make transactions. Cool, right?
 
@@ -87,6 +87,7 @@ The Verxio Protocol solution leverages these cryptographic methods to create a s
 - Next, we developed the UI/UX using React and TypeScript, focusing on a simple yet elegant design for both power and non-power users. The UI colors and feel is being build keeping in mind the Polygon Blockchain.
 - We used wagmi library for blockchain interactions which streamlined the process.
 - The elliptic library handled the complex math involved with elliptic curves, and both libraries featured TypeScript typings, making them a joy to work with.
+- We used Streamr Client to store all user transactions to a Data Pool on Streamr Hub
 - Tools Used: Solidity, Hardhat, Polygon Blockchain, React, Typescript, Wagmi and Metamask.
 
 ### 👥 Intended Users
@@ -97,15 +98,6 @@ The Verxio Protocol solution leverages these cryptographic methods to create a s
 - The main challenge was designing the best possible user experience, which we believe the current implementation achieves.
 - Another challenge was signing and sending withdrawal transactions without using the connected user wallet. We resolved this by creating a custom-built transaction broadcasted via public RPC URLs, which works effectively.
 
-#### Credits
-- The project is being inspired from https://github.com/vden/hazed and some parts of the code has been used.
-- The deployment on the Polygon Blockchain and its integration with the Polygon Blockchain is our original work and no one has done it before.
-
-### 💹 Market Analysis
-- Verxio Protocol's solution addresses a significant market opportunity by providing privacy in blockchain transactions. Privacy has become a crucial concern in the blockchain industry as individuals and businesses increasingly recognize the risks associated with transparent transactions. By offering a user-friendly and accessible solution, Verxio Protocol taps into a growing demand for privacy-enhancing tools in the blockchain space.
-- The Total Addressable Market (TAM) for Verxio Protocol's solution is substantial. As blockchain technology continues to gain adoption across industries, the need for privacy in transactions becomes more prevalent. Individuals who value financial privacy, businesses seeking to protect sensitive financial information, and anyone concerned about the risks of identity exposure in transactions represent a wide range of potential users for Verxio Protocol.
-- Verxio Protocol differentiates itself from incumbent competitors by providing a simpler and more cost-effective solution. Existing privacy-focused blockchains like Monero require specialized tools and incur higher costs, making them less accessible to mainstream users. Verxio Protocol bridges the gap between complex and expensive privacy solutions and non-private transfers, offering a user-friendly option with its stealth address implementation. The ease of generating Verxio Protocol IDs and utilizing stealth addresses sets Verxio Protocol apart from incumbent competitors.
-- Furthermore, Verxio Protocol leverages the Polygon Blockchain, which provides fast and affordable transactions. This strategic choice enhances the scalability and usability of the solution, making it attractive to users who prioritize transaction speed and cost-efficiency.
 
 ### ☄️ What's next?
 - Currently, Verxio Protocol only supports native coin transfers(BNB). However, adding support for tokens and NFTs would greatly enhance its utility. We are considering implementing relayer nodes to mint and sell notes as tokens (or NFTs) in exchange for covering user fees on transfers.
