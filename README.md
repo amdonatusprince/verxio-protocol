@@ -1,7 +1,7 @@
 # Verxio Protocol | Receive crypto on any EVM blockchain without revealing your personal information 
 
 
-Verxio Protocol is a non-custodial solution that uses stealth addresses to enable users to receive crypto on the Gnosis Blockchain without revealing the receiver's real address; which serves as their identity on the blockchain.
+Verxio Protocol is a non-custodial solution that uses stealth addresses to enable users to receive crypto on the Polygon Blockchain without revealing the receiver's real address; which serves as their identity on the blockchain.
 
 
 Verxio is heavily inspired by [Vitalik's recent article on stealth addresses](https://vitalik.eth.limo/general/2023/01/20/stealth.html).
@@ -110,10 +110,8 @@ The Verxio Protocol solution leverages these cryptographic methods to create a s
 ### 🌟 Conclusion
 - Verxio Protocol is a user-friendly and innovative solution that addresses the growing need for privacy in blockchain transactions. By leveraging stealth addresses and the Polygon Blockchain, Verxio Protocol provides a simple and cost-effective way for users to keep their financial transactions private. With a substantial market opportunity and a focus on usability, Verxio Protocol has the potential to become a leading privacy solution in the blockchain industry.
 
-### 💪 Deployed Contract Addresses (opBNB Testnet)
-- StealthAddress Contract: [0xe7f7067c9ecab27c5f7f13e02b13ed50931f6d0f](https://opbnb-testnet.bscscan.com/address/0xe7f7067c9ecab27c5f7f13e02b13ed50931f6d0f)
-### 💪 Deployed Contract Addresses (BNB Testnet)
-- StealthAddress Contract: [0x677EE2AA9f5348980d38BA00B5E525a90FA2C50d](https://testnet.bscscan.com/address/0x677EE2AA9f5348980d38BA00B5E525a90FA2C50d)
+### 💪 Deployed Contract Addresses (Polygon Testnet)
+- StealthAddress Contract: [0xe7f7067c9ecab27c5f7f13e02b13ed50931f6d0f](https://Polygon-testnet.bscscan.com/address/0xe7f7067c9ecab27c5f7f13e02b13ed50931f6d0f)
 
 ### 🚫 License
 This repository includes an [unlicensed](http://unlicense.org/) statement.
