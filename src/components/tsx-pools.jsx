@@ -20,13 +20,19 @@ function TransactionPool() {
     },
   });
 
-  console.log(streamr)
+  console.log(  streamr.subscribe(
+    '0x546A5cB5c0AdD53efbC60000644AA70204B20576/VerxioTransactionPool', 
+  (messages) => {
+    messages.map((msg, index) => (
+      console.log(msg)
+    ))
+}))
+
+
 
   useEffect(() => {
     const subscription = streamr.subscribe(
-      {
-        id: '/VerxioTransactionPool',
-      },
+      '0x546A5cB5c0AdD53efbC60000644AA70204B20576/VerxioTransactionPool',
       (transaction) => {
         // 'transaction' contains the incoming data
         const incomingTransaction = transaction;
