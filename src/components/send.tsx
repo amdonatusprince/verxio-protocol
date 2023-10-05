@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import './panes.css';
-
+import { useTransaction } from 'wagmi'
 import { curve, ec as EC } from 'elliptic';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,9 +19,9 @@ import { registryAddress, explorer } from '../utils/constants';
 import { calculateCrc } from '../utils/crc16';
 import useDebounce from '../utils/debounce';
 import { Connect } from './connect';
+import initializeStreamr from '../utils/initiateStreamr';
 
 const zero = BigNumber.from(0);
-
 export function Send() {
   const ec = useMemo(() => {
     return new EC('secp256k1');
@@ -44,7 +44,6 @@ export function Send() {
   const [ephPublic, setEphPublic] = useState<curve.base.BasePoint>();
   const [VerxioIDError, setVerxioIDError] = useState<boolean>(false);
   const [amountError, setAmountError] = useState<boolean>(false);
-
   const [amount, setAmount] = useState<string>('0');
   const [amountWei, setAmountWei] = useState<BigNumber>(zero);
   const [hash] = useState<string>(window.location.hash);
@@ -75,6 +74,45 @@ export function Send() {
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
+
+  const { data: transaction} = useTransaction({
+    hash: data?.hash,
+  })
+console.log("From Address",transaction)
+if (transaction){
+  const { hash: transactionHash, 
+    from: fromAddress, 
+    to: toAddress, 
+    value: txnAmount } = transaction || {};
+  
+    
+    const streamTransaction = {
+      transactionHash,
+      fromAddress,
+      toAddress,
+      amount: ethers.utils.formatEther(txnAmount)
+    };
+  
+    console.log("txn", streamTransaction)
+
+      // Streamr function to Publish to Verxio Transaction pool
+  async function main() {
+    try {
+      const stream = await initializeStreamr();
+
+      // Publish your message (assuming msg is defined)
+      await stream.publish(transaction);
+
+      console.log('Message published successfully');
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  main()
+  console.log("Data published successfully!")
+}
+
 
   const handleIDInput = (ev: React.FormEvent<HTMLInputElement>) => {
     setTheirID(ev.currentTarget.value);
@@ -185,6 +223,7 @@ export function Send() {
       setAmountError(true);
     }
   }, [amount, balance]);
+
 
   return (
     <div style={{ paddingTop: '1rem' }}>

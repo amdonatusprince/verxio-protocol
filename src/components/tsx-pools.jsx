@@ -1,55 +1,84 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { StreamrClient } from 'streamr-client';
 import {
   TableContainer,
   Table,
   TableCaption,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-} from '@chakra-ui/react'; 
+} from '@chakra-ui/react';
 
 function TransactionPool() {
-    const cellStyles = {
-        color: 'white',
-      };
+  const [transactions, setTransactions] = useState([]);
 
-      const headerStyles = {
-        color: 'magenta',
-      };
+  const streamr = new StreamrClient({
+    auth: {
+      privateKey: StreamrClient.generateEthereumAccount().privateKey,
+    },
+  });
+
+  console.log(streamr)
+
+  useEffect(() => {
+    const subscription = streamr.subscribe(
+      {
+        id: '/VerxioTransactionPool',
+      },
+      (transaction) => {
+        // 'transaction' contains the incoming data
+        const incomingTransaction = transaction;
+        setTransactions((prevTransactions) => [...prevTransactions, incomingTransaction]);
+        console.log('Added txn successfully!');
+      },
+      (error) => {
+        console.error('Error subscribing to the data stream:', error);
+      }
+    );
+
+    return () => {
+      streamr.unsubscribe();
+    };
+  }, []);
+
+  const cellStyles = {
+    color: 'white',
+  };
+
+  const headerStyles = {
+    color: 'magenta',
+  };
 
   return (
     <TableContainer>
-      <Table size='lg' variant='striped' colorScheme='black' >
-        <TableCaption>verxio transaction pool powered by <a 
-         style={{ color: 'white', textDecoration: 'underline' }}
-         href='https://streamr.network/'>
-            streamr</a></TableCaption>
+      <Table size="lg" variant="striped" colorScheme="black">
+        <TableCaption>
+          verxio transaction pool powered by{' '}
+          <a style={{ color: 'white', textDecoration: 'underline' }} href="https://streamr.network/">
+            streamr
+          </a>
+        </TableCaption>
         <Thead>
           <Tr>
-            <Th style={headerStyles}>To convert</Th>
-            <Th style={headerStyles}>into</Th>
-            <Th style={headerStyles} isNumeric>multiply by</Th>
+            <Th style={headerStyles}>Txn Hash</Th>
+            <Th style={headerStyles}>From</Th>
+            <Th style={headerStyles}>To</Th>
+            <Th style={headerStyles}>Amount</Th>
           </Tr>
         </Thead>
         <Tbody>
-        <Tr>
-        <Td style={cellStyles}>inches</Td>
-        <Td style={cellStyles}>millimetres (mm)</Td>
-        <Td style={cellStyles} isNumeric>25.4</Td>
-      </Tr>
-          <Tr>
-            <Td style={cellStyles}>feet</Td>
-            <Td style={cellStyles}>centimetres (cm)</Td>
-            <Td style={cellStyles} isNumeric>30.48</Td>
-          </Tr>
-          <Tr>
-            <Td style={cellStyles}>yards</Td>
-            <Td style={cellStyles}>metres (m)</Td>
-            <Td style={cellStyles} isNumeric>0.91444</Td>
-          </Tr>
+          {transactions.map((transaction, index) => (
+            <Tr key={index}>
+              <Td style={cellStyles}>{transaction.txnHash}</Td>
+              <Td style={cellStyles}>{transaction.from}</Td>
+              <Td style={cellStyles}>{transaction.to}</Td>
+              <Td style={cellStyles} isNumeric>
+                {transaction.amount}
+              </Td>
+            </Tr>
+          ))}
         </Tbody>
       </Table>
     </TableContainer>

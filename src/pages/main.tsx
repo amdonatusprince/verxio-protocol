@@ -1,10 +1,9 @@
-// import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import {
   faArrowRight,
   faArrowTurnDown
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BiBot } from 'react-icons/bi';
+// import { BiBot } from 'react-icons/bi';
 import { useState } from 'react';
 import { useNetwork } from 'wagmi';
 import AddressProvider from '../components/address';
@@ -48,7 +47,7 @@ export function Main() {
             style={{ marginLeft: '-150px' }}>
             <span> 
             VERXIO AI
-              <BiBot />  
+              {/* <BiBot />   */}
                 </span>
               </button>
               </Link>
