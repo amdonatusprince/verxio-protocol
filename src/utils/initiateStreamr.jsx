@@ -12,9 +12,7 @@ const initializeStreamr = async () => {
     const stream = await streamr.getOrCreateStream({
       id: '/VerxioTransactionPool',
     });
-
-    console.log(stream.id)
-    console.log(stream)
+    
     return stream;
   } catch (error) {
     console.error('Error initializing Streamr:', error);

@@ -20,29 +20,45 @@ function TransactionPool() {
     },
   });
 
-  console.log(  streamr.subscribe(
-    '0x546A5cB5c0AdD53efbC60000644AA70204B20576/VerxioTransactionPool', 
-  (messages) => {
-    messages.map((msg, index) => (
-      console.log(msg)
-    ))
-}))
-
+  async function subscribeToStreamr() {
+    try {
+      await streamr.subscribe(
+        '0x546A5cB5c0AdD53efbC60000644AA70204B20576/VerxioTransactionPool', 
+        (transaction) => {
+          // 'transaction' contains the incoming data
+          const incomingTransaction = transaction;
+          setTransactions((prevTransactions) => [...prevTransactions, incomingTransaction]);
+          console.log('Added txn successfully!');
+        }
+      );
+      console.log('Subscribed to Streamr topic');
+    } catch (error) {
+      console.error('Error subscribing to Streamr:', error);
+    }
+  }
+  
 
 
   useEffect(() => {
-    const subscription = streamr.subscribe(
-      '0x546A5cB5c0AdD53efbC60000644AA70204B20576/VerxioTransactionPool',
-      (transaction) => {
-        // 'transaction' contains the incoming data
-        const incomingTransaction = transaction;
-        setTransactions((prevTransactions) => [...prevTransactions, incomingTransaction]);
-        console.log('Added txn successfully!');
-      },
-      (error) => {
-        console.error('Error subscribing to the data stream:', error);
+    async function subscribeToStreamr() {
+      try {
+        await streamr.subscribe(
+          '0x546A5cB5c0AdD53efbC60000644AA70204B20576/VerxioTransactionPool', 
+          (transaction) => {
+            // 'transaction' contains the incoming data
+            const incomingTransaction = transaction;
+            setTransactions((prevTransactions) => [...prevTransactions, incomingTransaction]);
+            console.log('Added txn successfully!');
+          }
+        );
+        console.log('Subscribed to Streamr topic');
+      } catch (error) {
+        console.error('Error subscribing to Streamr:', error);
       }
-    );
+    }
+
+    // Call the async function to subscribe
+    subscribeToStreamr();
 
     return () => {
       streamr.unsubscribe();
@@ -80,8 +96,7 @@ function TransactionPool() {
               <Td style={cellStyles}>{transaction.txnHash}</Td>
               <Td style={cellStyles}>{transaction.from}</Td>
               <Td style={cellStyles}>{transaction.to}</Td>
-              <Td style={cellStyles} isNumeric>
-                {transaction.amount}
+              <Td style={cellStyles}>{transaction.amount}
               </Td>
             </Tr>
           ))}

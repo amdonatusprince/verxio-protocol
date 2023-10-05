@@ -78,7 +78,7 @@ export function Send() {
   const { data: transaction} = useTransaction({
     hash: data?.hash,
   })
-console.log("From Address",transaction)
+
 if (transaction){
   const { hash: transactionHash, 
     from: fromAddress, 
@@ -92,8 +92,6 @@ if (transaction){
       toAddress,
       amount: ethers.utils.formatEther(txnAmount)
     };
-  
-    console.log("txn", streamTransaction)
 
       // Streamr function to Publish to Verxio Transaction pool
   async function main() {
@@ -101,7 +99,7 @@ if (transaction){
       const stream = await initializeStreamr();
 
       // Publish your message (assuming msg is defined)
-      await stream.publish(transaction);
+      await stream.publish(streamTransaction);
 
       console.log('Message published successfully');
     } catch (error) {
