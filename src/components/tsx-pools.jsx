@@ -90,7 +90,7 @@ function TransactionPool() {
           </Tr>
         </Thead>
         <Tbody>
-          {transactions.map((transaction, index) => (
+          {transactions.slice().reverse().map((transaction, index) => (
             <Tr key={index}>
               <Td style={cellStyles}>{<a 
                   href={`https://mumbai.polygonscan.com/tx/${transaction.transactionHash}`}
