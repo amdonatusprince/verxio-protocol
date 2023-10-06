@@ -21,29 +21,37 @@ function TransactionPool() {
     },
   });
 
-  useEffect(() => {
-      try {
-        const stream = streamr.subscribe(
-          '0x546a5cb5c0add53efbc60000644aa70204b20576/VerxioPool', 
-          (transaction) => {
-            // 'transaction' contains the incoming data
-            const incomingTransaction = transaction;
-  
-            // Use the functional form of setTransactions to ensure updates are batched correctly
-            setTransactions((prevTransactions) => [
-              ...prevTransactions,
-              incomingTransaction,
-            ]);
-  
-            console.log('Added txn successfully!');
-          }
-        );
-        console.log('Subscribed to Streamr topic');
-      } catch (error) {
-        console.error('Error subscribing to Streamr:', error);
-      }
+  async function subscribeToStreamr() {
+    try {
+      const sub1 = await streamr.subscribe(
+        {
+          id: '0x546a5cb5c0add53efbc60000644aa70204b20576/VerxioPool',
+          resend: {
+            last: 5,
+          },
+        },
+        (transaction) => {
+          // 'transaction' contains the incoming data
+          const incomingTransaction = transaction;
 
-  }, []); // Empty dependency array, so this effect only runs once
+          // Use the functional form of setTransactions to ensure updates are batched correctly
+          setTransactions((prevTransactions) => [
+            ...prevTransactions,
+            incomingTransaction,
+          ]);
+
+          console.log(' Resend Added txn successfully!');
+        }
+      );
+      console.log('Subscribed to Streamr topic');
+    } catch (error) {
+      console.error('Error subscribing to Streamr:', error);
+    }
+  }
+
+  useEffect(() => {
+    subscribeToStreamr();
+  }, []);
   
 
   const cellStyles = {
