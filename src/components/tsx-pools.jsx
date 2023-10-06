@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StreamrClient } from 'streamr-client';
+
 import {
   TableContainer,
   Table,
@@ -20,34 +21,20 @@ function TransactionPool() {
     },
   });
 
-  async function subscribeToStreamr() {
-    try {
-      await streamr.subscribe(
-        '0x546A5cB5c0AdD53efbC60000644AA70204B20576/VerxioTransactionPool', 
-        (transaction) => {
-          // 'transaction' contains the incoming data
-          const incomingTransaction = transaction;
-          setTransactions((prevTransactions) => [...prevTransactions, incomingTransaction]);
-          console.log('Added txn successfully!');
-        }
-      );
-      console.log('Subscribed to Streamr topic');
-    } catch (error) {
-      console.error('Error subscribing to Streamr:', error);
-    }
-  }
-  
-
-
   useEffect(() => {
-    async function subscribeToStreamr() {
       try {
-        await streamr.subscribe(
-          '0x546A5cB5c0AdD53efbC60000644AA70204B20576/VerxioTransactionPool', 
+        const stream = streamr.subscribe(
+          '0x546a5cb5c0add53efbc60000644aa70204b20576/VerxioPool', 
           (transaction) => {
             // 'transaction' contains the incoming data
             const incomingTransaction = transaction;
-            setTransactions((prevTransactions) => [...prevTransactions, incomingTransaction]);
+  
+            // Use the functional form of setTransactions to ensure updates are batched correctly
+            setTransactions((prevTransactions) => [
+              ...prevTransactions,
+              incomingTransaction,
+            ]);
+  
             console.log('Added txn successfully!');
           }
         );
@@ -55,15 +42,9 @@ function TransactionPool() {
       } catch (error) {
         console.error('Error subscribing to Streamr:', error);
       }
-    }
 
-    // Call the async function to subscribe
-    subscribeToStreamr();
-
-    return () => {
-      streamr.unsubscribe();
-    };
-  }, []);
+  }, []); // Empty dependency array, so this effect only runs once
+  
 
   const cellStyles = {
     color: 'white',
@@ -72,6 +53,16 @@ function TransactionPool() {
   const headerStyles = {
     color: 'magenta',
   };
+
+  function formatAddress(address) {
+    if (!address) {
+      return 'Invalid Address';
+    }
+    
+    const firstThree = address.slice(0, 5);
+    const lastFour = address.slice(-4);
+    return `${firstThree}...${lastFour}`;
+  }
 
   return (
     <TableContainer>
@@ -93,9 +84,14 @@ function TransactionPool() {
         <Tbody>
           {transactions.map((transaction, index) => (
             <Tr key={index}>
-              <Td style={cellStyles}>{transaction.txnHash}</Td>
-              <Td style={cellStyles}>{transaction.from}</Td>
-              <Td style={cellStyles}>{transaction.to}</Td>
+              <Td style={cellStyles}>{<a 
+                  href={`https://mumbai.polygonscan.com/tx/${transaction.transactionHash}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+              >
+                {formatAddress(transaction.transactionHash)}</a>}</Td>
+              <Td style={cellStyles}>{formatAddress(transaction.fromAddress)}</Td>
+              <Td style={cellStyles}>{formatAddress(transaction.toAddress)}</Td>
               <Td style={cellStyles}>{transaction.amount}
               </Td>
             </Tr>
