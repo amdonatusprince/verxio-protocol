@@ -157,7 +157,7 @@ export function Withdraw() {
 
 
         // early check if shared secret might be the same
-        if (_ss.toArray()[0] == parseInt(ss, 16)) return null;
+        if (_ss.toArray()[0] !== parseInt(ss, 16)) return null;
 
         const hashed = ec.keyFromPrivate(keccak256(_ss.toArray()));
         // console.log(hashed)
