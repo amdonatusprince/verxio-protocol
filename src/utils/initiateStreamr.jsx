@@ -10,7 +10,7 @@ const initializeStreamr = async () => {
     });
 
     const stream = await streamr.getOrCreateStream({
-      id: '/VerxioTransactionPool',
+      id: '/VerxioPool',
     });
     
     return stream;

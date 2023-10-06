@@ -79,37 +79,37 @@ export function Send() {
     hash: data?.hash,
   })
 
-if (transaction){
-  const { hash: transactionHash, 
-    from: fromAddress, 
-    to: toAddress, 
-    value: txnAmount } = transaction || {};
+// if (isSuccess){
+//   const { hash: transactionHash, 
+//     from: fromAddress, 
+//     to: toAddress, 
+//     value: txnAmount } = transaction || {};
   
     
-    const streamTransaction = {
-      transactionHash,
-      fromAddress,
-      toAddress,
-      amount: ethers.utils.formatEther(txnAmount)
-    };
+//     const streamTransaction = {
+//       transactionHash,
+//       fromAddress,
+//       toAddress,
+//       amount: ethers.utils.formatEther(txnAmount!)
+//     };
 
-      // Streamr function to Publish to Verxio Transaction pool
-  async function main() {
-    try {
-      const stream = await initializeStreamr();
+//       // Streamr function to Publish to Verxio Transaction pool
+//   async function main() {
+//     try {
+//       const stream = await initializeStreamr();
 
-      // Publish your message (assuming msg is defined)
-      await stream.publish(streamTransaction);
+//       // Publish your message (assuming msg is defined)
+//       await stream.publish(streamTransaction);
 
-      console.log('Message published successfully');
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
+//       console.log('Message published successfully: ', streamTransaction);
+//     } catch (error) {
+//       console.error('Error:', error);
+//     }
+//   }
 
-  main()
-  console.log("Data published successfully!")
-}
+//   main()
+//   console.log("Data published successfully!")
+// }
 
 
   const handleIDInput = (ev: React.FormEvent<HTMLInputElement>) => {
@@ -221,6 +221,40 @@ if (transaction){
       setAmountError(true);
     }
   }, [amount, balance]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      const { hash: transactionHash, 
+        from: fromAddress, 
+        to: toAddress, 
+        value: txnAmount } = transaction || {};
+  
+      const streamTransaction = {
+        transactionHash,
+        fromAddress,
+        toAddress,
+        amount: ethers.utils.formatEther(txnAmount!)
+      };
+  
+      // Streamr function to Publish to Verxio Transaction pool
+      async function main() {
+        try {
+          const stream = await initializeStreamr();
+  
+          // Publish your message (assuming msg is defined)
+          await stream.publish(streamTransaction);
+  
+          console.log('Message published successfully: ', streamTransaction);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+  
+      main();
+      console.log("Data published successfully!");
+    }
+  }, [isSuccess, transaction]);
+  
 
 
   return (
