@@ -117,8 +117,6 @@ The Verxio Protocol solution leverages these cryptographic methods to create a s
 - Link to Repo: https://github.com/amdonatusprince/verxio-protocol
 - Video: https://youtu.be/r_8gwhwlRhg
 
-### 🚫 License
-This repository includes an [unlicensed](http://unlicense.org/) statement.
 
 ### 💻 Deploying the Verxio Protocol on local machine
 
