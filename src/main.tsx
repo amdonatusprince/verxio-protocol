@@ -4,7 +4,7 @@ import { WagmiConfig, createConfig, configureChains, } from 'wagmi'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import PageRoutes from './pages/routes.jsx'
-import { polygon } from 'wagmi/chains'
+import { polygon, polygonZkEvm, polygonZkEvmTestnet } from 'wagmi/chains'
 import '@rainbow-me/rainbowkit/styles.css';
 import { ChakraProvider } from '@chakra-ui/react'
 import {
@@ -25,7 +25,7 @@ import {
 
 const projectId = "274de4271228fdd69013c56274f0e688";
 const { chains, publicClient } = configureChains(
-  [polygon, PolygonMumbai],
+  [polygon, PolygonMumbai, polygonZkEvm, polygonZkEvmTestnet],
   [
     publicProvider()
   ]
